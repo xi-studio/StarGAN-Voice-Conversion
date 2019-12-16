@@ -22,7 +22,7 @@ def main(config):
 
     # Data loader.
     train_loader = get_loader(config.train_data_dir, config.batch_size, 'train', num_workers=config.num_workers)
-    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='p262', trg_spk='p272')
+    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='ace', trg_spk='jay')
 
     # Solver for training and testing StarGAN.
     solver = Solver(train_loader, test_loader, config)

@@ -2,3 +2,4 @@ __pycache__/
 data/
 logs/
 prepare_data/pretrained_models/
+samples/

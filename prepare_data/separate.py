@@ -53,7 +53,13 @@ def trans():
         print(name)
         librosa.output.write_wav(name, x, sr=16000)
 
-if __name__ == '__main__':
-   trans() 
+def tomv():
+    res = glob.glob('/home/tree/StarGAN-Voice-Conversion/data/song_wav/tmp/*.wav')
+    for f in res:
+        name = f.split('/')
+        print('cp ' + f + ' /home/tree/StarGAN-Voice-Conversion/data/song_wav/ace/ace_' + name[-1])
+        os.system('cp ' + f + ' /home/tree/StarGAN-Voice-Conversion/data/song_wav/ace/ace_' + name[-1])
 
+if __name__ == '__main__':
+    tomv()
 

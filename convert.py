@@ -25,7 +25,8 @@ spk2acc = {'262': 'Edinburgh', #F
            '248': 'India', #F
            '251': 'India'} #M
 
-speakers = ['p262', 'p272', 'p229', 'p232', 'p292', 'p293', 'p360', 'p361', 'p248', 'p251']
+#speakers = ['p262', 'p272', 'p229', 'p232', 'p292', 'p293', 'p360', 'p361', 'p248', 'p251']
+speakers = ['jay', 'gem', 'wang', 'liang', 'sun', 'shuang', 'ace']
 spk2idx = dict(zip(speakers, range(len(speakers))))
 
 class TestDataset(object):
@@ -77,7 +78,7 @@ def test(config):
     sampling_rate, num_mcep, frame_period=16000, 36, 5
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    G = Generator().to(device)
+    G = Generator(num_speakers=7).to(device)
     test_loader = TestDataset(config)
     # Restore model
     print(f'Loading the trained models from step {config.resume_iters}...')
@@ -122,18 +123,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     # Model configuration.
-    parser.add_argument('--num_speakers', type=int, default=10, help='dimension of speaker labels')
-    parser.add_argument('--num_converted_wavs', type=int, default=8, help='number of wavs to convert.')
+    parser.add_argument('--num_speakers', type=int, default=7, help='dimension of speaker labels')
+    parser.add_argument('--num_converted_wavs', type=int, default=12, help='number of wavs to convert.')
     parser.add_argument('--resume_iters', type=int, default=None, help='step to resume for testing.')
     parser.add_argument('--src_spk', type=str, default='p262', help = 'target speaker.')
     parser.add_argument('--trg_spk', type=str, default='p272', help = 'target speaker.')
 
     # Directories.
-    parser.add_argument('--train_data_dir', type=str, default='./data/mc/train')
-    parser.add_argument('--test_data_dir', type=str, default='./data/mc/test')
-    parser.add_argument('--wav_dir', type=str, default="./data/VCTK-Corpus/wav16")
+    parser.add_argument('--train_data_dir', type=str, default='./data/song/train')
+    parser.add_argument('--test_data_dir', type=str, default='./data/song/test')
+    parser.add_argument('--wav_dir', type=str, default="./data/song_wav")
     parser.add_argument('--log_dir', type=str, default='./logs')
-    parser.add_argument('--model_save_dir', type=str, default='./models')
+    parser.add_argument('--model_save_dir', type=str, default='/nas/jy/song_model')
     parser.add_argument('--convert_dir', type=str, default='./converted')
 
 

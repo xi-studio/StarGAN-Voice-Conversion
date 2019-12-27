@@ -3,3 +3,5 @@ data/
 logs/
 prepare_data/pretrained_models/
 samples/
+converted/
+models/

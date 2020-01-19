@@ -22,7 +22,7 @@ def main(config):
 
     # Data loader.
     train_loader = get_loader(config.train_data_dir, config.batch_size, 'train', num_workers=config.num_workers)
-    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='ace', trg_spk='liang')
+    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='ace', trg_spk='xiaoye')
     #test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='p262', trg_spk='p272')
 
     # Solver for training and testing StarGAN.
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # Step size.
     parser.add_argument('--log_step', type=int, default=10)
     parser.add_argument('--sample_step', type=int, default=1000)
-    parser.add_argument('--model_save_step', type=int, default=1000)
+    parser.add_argument('--model_save_step', type=int, default=10000)
     parser.add_argument('--lr_update_step', type=int, default=1000)
 
     config = parser.parse_args()

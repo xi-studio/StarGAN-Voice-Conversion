@@ -21,7 +21,7 @@ spk2acc = {'262': 'Edinburgh', #F
 min_length = 256   # Since we slice 256 frames from each utterance when training.
 # Build a dict useful when we want to get one-hot representation of speakers.
 #speakers = ['p262', 'p272', 'p229', 'p232', 'p292', 'p293', 'p360', 'p361', 'p248', 'p251']
-speakers = ['jay', 'gem', 'wang', 'liang', 'sun', 'shuang', 'ace']
+speakers = ['jay', 'gem', 'wang', 'liang', 'sun', 'shuang', 'ace', 'xiaoye']
 spk2idx = dict(zip(speakers, range(len(speakers))))
 
 def to_categorical(y, num_classes=None):

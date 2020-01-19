@@ -86,7 +86,8 @@ def test(config):
     G.load_state_dict(torch.load(G_path, map_location=lambda storage, loc: storage))
 
     # Read a batch of testdata
-    test_wavfiles = test_loader.get_batch_test_data(batch_size=config.num_converted_wavs)
+    #test_wavfiles = test_loader.get_batch_test_data(batch_size=config.num_converted_wavs)
+    test_wavfiles = glob.glob('./data/tmp/*.wav')
     test_wavs = [load_wav(wavfile, sampling_rate) for wavfile in test_wavfiles]
 
     with torch.no_grad():
@@ -113,11 +114,11 @@ def test(config):
             wav_id = wav_name.split('.')[0]
             librosa.output.write_wav(join(config.convert_dir, str(config.resume_iters),
                 f'{wav_id}-vcto-{test_loader.trg_spk}.wav'), wav_transformed, sampling_rate)
-            if [True, False][0]:
-                wav_cpsyn = world_speech_synthesis(f0=f0, coded_sp=coded_sp, 
-                                                ap=ap, fs=sampling_rate, frame_period=frame_period)
-                librosa.output.write_wav(join(config.convert_dir, str(config.resume_iters), f'cpsyn-{wav_name}'), wav_cpsyn, sampling_rate)
-
+#            if [True, False][0]:
+#                wav_cpsyn = world_speech_synthesis(f0=f0, coded_sp=coded_sp, 
+#                                                ap=ap, fs=sampling_rate, frame_period=frame_period)
+#                librosa.output.write_wav(join(config.convert_dir, str(config.resume_iters), f'cpsyn-{wav_name}'), wav_cpsyn, sampling_rate)
+#
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
